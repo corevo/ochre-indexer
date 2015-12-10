@@ -1,4 +1,3 @@
-import elastic from 'elasticsearch';
 import info from 'info.js';
 import Directory from '../utils/directory';
 
