@@ -27,6 +27,7 @@
     "babel-preset-stage-0": "^6.3.13"
   },
   "dependencies": {
+    "elasticsearch": "^10.0.1",
     "info.js": "^0.1.0"
   }
 }
