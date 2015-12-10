@@ -17,8 +17,18 @@ export default class Indexer {
                     console.error(err);
                 } else {
                     let document = {
+                        index: 'files',
+                        type: 'document',
                         id: md5(data)
-                    }
+                    };
+                    info(file, (err, contents) => {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            document.body = contents;
+                            this.client.create(document);
+                        }
+                    });
                 }
             })
         });
