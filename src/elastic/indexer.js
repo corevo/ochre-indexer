@@ -26,6 +26,7 @@ export default class Indexer {
                             console.error(err);
                         } else {
                             document.body = contents;
+                            document.body.path = file;
                             this.client.create(document);
                         }
                     });

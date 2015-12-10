@@ -15,7 +15,10 @@ export default class Directory {
                 if (fileStats.isDirectory()) {
                     this.directories.push(itemPath);
                 } else if (fileStats.isFile()) {
-                    this.files.push(itemPath);
+                    this.files.push({
+                        path: itemPath,
+                        stats: fileStats
+                    });
                 }
             }
         });
