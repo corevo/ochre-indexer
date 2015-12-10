@@ -28,7 +28,7 @@ export default class Indexer {
                             document.body = contents;
                             document.body.path = file.path;
                             document.body.date = file.ctime;
-                            this.client.create(document);
+                            this.client.index(document);
                         }
                     });
                 }
