@@ -21,12 +21,13 @@ export default class Indexer {
                         type: 'document',
                         id: md5(data)
                     };
-                    info(file, (err, contents) => {
+                    info(file.path, (err, contents) => {
                         if (err) {
                             console.error(err);
                         } else {
                             document.body = contents;
-                            document.body.path = file;
+                            document.body.path = file.path;
+                            document.body.date = file.ctime;
                             this.client.create(document);
                         }
                     });
