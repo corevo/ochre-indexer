@@ -1,0 +1,24 @@
+{
+  "name": "ochre-indexer",
+  "version": "0.0.0",
+  "description": "fs indexer that works with elastic and mq",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corevo/ochre-indexer.git"
+  },
+  "keywords": [
+    "index",
+    "file",
+    "elasticsearch"
+  ],
+  "author": "corevo",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/corevo/ochre-indexer/issues"
+  },
+  "homepage": "https://github.com/corevo/ochre-indexer#readme"
+}
