@@ -12,7 +12,7 @@ export default class Indexer {
         let directory = new Directory(path);
 
         directory.files.forEach(file => {
-            fs.readFile(file, (err, data) => {
+            fs.readFile(file.path, (err, data) => {
                 if (err) {
                     console.error(err);
                 } else {
