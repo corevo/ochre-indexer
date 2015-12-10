@@ -27,7 +27,7 @@ export default class Indexer {
                         } else {
                             document.body = contents;
                             document.body.path = file.path;
-                            document.body.date = file.ctime;
+                            document.body.date = file.stats.ctime;
                             this.client.index(document);
                         }
                     });
