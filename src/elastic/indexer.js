@@ -19,17 +19,17 @@ export default class Indexer {
                     let document = {
                         index: 'files',
                         type: 'document',
-                        id: md5(data)
+                        id: md5(data),
+                        path: file.path,
+                        date: file.stats.ctime
                     };
                     info(file.path, (err, contents) => {
                         if (err) {
                             console.error(err);
                         } else {
-                            document.body = contents;
-                            document.body.path = file.path;
-                            document.body.date = file.stats.ctime;
-                            this.client.index(document);
+                            document.body.contents = contents;
                         }
+                        this.client.index(document);
                     });
                 }
             })
