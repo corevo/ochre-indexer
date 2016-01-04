@@ -2,6 +2,7 @@ import fs from 'fs';
 import md5 from 'md5';
 import info from 'info.js';
 import Directory from '../utils/directory';
+import getStats from '../utils/file';
 
 export default class Indexer {
     constructor (elasticClient) {
@@ -29,6 +30,9 @@ export default class Indexer {
                         } else {
                             document.body.contents = contents;
                         }
+                        let stats = getStats(file.path);
+                        if (stats)
+                            document = Object.assign(document, stats);
                         this.client.index(document);
                     });
                 }
