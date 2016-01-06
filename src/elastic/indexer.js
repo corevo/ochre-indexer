@@ -20,8 +20,10 @@ export default class Indexer {
                         index: 'files',
                         type: 'document',
                         id: md5(data),
-                        path: file.path,
-                        date: file.stats.ctime
+                        body: {
+                            path: file.path,
+                            date: file.stats.ctime
+                        }
                     };
                     info(file.path, (err, contents) => {
                         if (err) {
