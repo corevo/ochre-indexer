@@ -34,7 +34,7 @@ export default class Indexer {
                         }
                         let stats = getStats(file.path);
                         if (stats)
-                            document = Object.assign(document, stats);
+                            document.body = Object.assign(document.body, stats);
                         this.client.index(document);
                     });
                 }
