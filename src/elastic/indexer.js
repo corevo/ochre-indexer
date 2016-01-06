@@ -22,6 +22,7 @@ export default class Indexer {
                         id: md5(data),
                         body: {
                             path: file.path,
+                            name: file.name,
                             date: file.stats.ctime
                         }
                     };
