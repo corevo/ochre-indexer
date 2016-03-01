@@ -17,7 +17,8 @@ export default class Directory {
                 } else if (fileStats.isFile()) {
                     this.files.push({
                         path: itemPath,
-                        stats: fileStats
+                        stats: fileStats,
+                        name: path.basename(item, path.extname(item))
                     });
                 }
             }

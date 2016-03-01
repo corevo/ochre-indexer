@@ -5,8 +5,8 @@ let client = new elastic.Client({
     host: process.env.ELASTIC_SERVER || 'localhost:9200',
     sniffOnStart: true
 });
-let indexer = new Indexer(client);
 
-export default function indexDirectory(path) {
+export default function indexDirectory(path, cb) {
+    let indexer = new Indexer(client, cb);
     indexer.index(path);
 }

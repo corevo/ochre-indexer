@@ -5,14 +5,24 @@ import Directory from '../utils/directory';
 import getStats from '../utils/file';
 
 export default class Indexer {
-    constructor (elasticClient) {
+    constructor (elasticClient, cb) {
         this.client = elasticClient;
         this.index = this.index.bind(this);
+        this.cb = cb;
+    }
+    set amount (val) {
+        this._amount = val;
+        if (val === 0)
+            this.cb(this.directory.directories);
+    }
+    get amount () {
+        return this._amount;
     }
     index (path) {
-        let directory = new Directory(path);
+        this.directory = new Directory(path);
+        this.amount = this.directory.files.length;
 
-        directory.files.forEach(file => {
+        this.directory.files.forEach(file => {
             fs.readFile(file.path, (err, data) => {
                 if (err) {
                     console.error(err);
@@ -21,8 +31,11 @@ export default class Indexer {
                         index: 'files',
                         type: 'document',
                         id: md5(data),
-                        path: file.path,
-                        date: file.stats.ctime
+                        body: {
+                            path: file.path,
+                            name: file.name,
+                            date: file.stats.ctime
+                        }
                     };
                     info(file.path, (err, contents) => {
                         if (err) {
@@ -33,7 +46,9 @@ export default class Indexer {
                         let stats = getStats(file.path);
                         if (stats)
                             document = Object.assign(document, stats);
-                        this.client.index(document);
+                        this.client.index(document, () => {
+                            this.amount--;
+                        });
                     });
                 }
             })
