@@ -39,13 +39,14 @@ export default class Indexer {
                     };
                     info(file.path, (err, contents) => {
                         if (err) {
-                            console.error(err);
                         } else {
                             document.body.contents = contents;
                         }
                         let stats = getStats(file.path);
-                        if (stats)
-                            document = Object.assign(document, stats);
+                        console.log(stats);
+                        if (stats) {
+                            document = Object.assign(document.body, stats);
+                        }
                         this.client.index(document, () => {
                             this.amount--;
                         });
