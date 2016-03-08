@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import md5 from 'md5';
 import info from 'info.js';
-import Directory from '../utils/directory';
 
 export default class Indexer {
     constructor (elasticClient) {
