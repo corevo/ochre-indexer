@@ -3,6 +3,10 @@ import path from 'path';
 import md5 from 'md5';
 import info from 'info.js';
 import getStats from '../utils/file';
+import createPreview from '../utils/preview';
+
+const FILES_PATH = process.env.FILES_PATH || '/data';
+const PREVIEW_PATH = process.env.PREVIEW_PATH || '/data/.previews';
 
 export default class Indexer {
     constructor (elasticClient) {
@@ -36,6 +40,13 @@ export default class Indexer {
                         document.body = Object.assign(document.body, stats);
                     }
                     this.client.index(document, cb);
+                    createPreview(file, FILES_PATH, PREVIEW_PATH, (err, out) => {
+                        if(err) {
+                            console.error(err);
+                        } else {
+                            console.log(out);
+                        }
+                    });
                 });
             }
         })
