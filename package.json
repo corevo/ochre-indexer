@@ -1,6 +1,6 @@
 {
   "name": "ochre-indexer",
-  "version": "0.1.1-zkenim",
+  "version": "0.1.2-zkenim",
   "description": "fs indexer that works with elastic and mq",
   "main": "./lib/index.js",
   "scripts": {
