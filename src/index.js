@@ -8,4 +8,4 @@ let client = new elastic.Client({
 
 let indexer = new Indexer(client);
 
-export default indexer.index;
+export default { index: indexer.index, deleteIndex: indexer.deleteIndex };
