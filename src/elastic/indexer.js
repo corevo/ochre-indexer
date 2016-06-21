@@ -12,6 +12,19 @@ export default class Indexer {
     constructor (elasticClient) {
         this.client = elasticClient;
         this.index = this.index.bind(this);
+        this.deleteIndex = this.deleteIndex.bind(this);
+    }
+    deleteIndex (file, cb) {
+        this.client.deleteByQuery({
+            index: 'files',
+            body: {
+                query: {
+                    term: {
+                        path: file
+                    }
+                }
+            }
+        }, cb);
     }
     index (file, cb) {
         let stats = fs.statSync(file);
