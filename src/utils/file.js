@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-export default function getFileStats(filePath, cb) {
-    let filenameBegining = filePath.lastIndexOf(path.sep) + 1;
-    let statsPath = `${filePath.substr(0, filenameBegining)}.${filePath.substr(filenameBegining)}.json`;
+const METADATA_PATH = process.env.METADATA_PATH || '/data/.metadata';
+
+export default function getFileStats(fileHash) {
     let stats = {};
     try {
-        stats = require(statsPath);
+        stats = require(path.join(METADATA_PATH, `.${fileHash}.json`));
     } catch(err) {
         console.log(`${filePath} doesn't have tags`);
     }
