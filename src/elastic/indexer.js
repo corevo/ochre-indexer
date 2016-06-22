@@ -32,10 +32,11 @@ export default class Indexer {
             if (err) {
                 console.error(err);
             } else {
+                const fileHash = md5(data);
                 let document = {
                     index: 'files',
                     type: 'document',
-                    id: md5(data),
+                    id: fileHash,
                     body: {
                         path: file,
                         name: path.basename(file, path.extname(file)),
@@ -48,7 +49,7 @@ export default class Indexer {
                     } else {
                         document.body.contents = contents;
                     }
-                    let stats = getStats(file);
+                    let stats = getStats(fileHash);
                     if (stats) {
                         document.body = Object.assign(document.body, stats);
                     }
