@@ -8,7 +8,7 @@ export default function getFileStats(fileHash) {
     try {
         stats = require(path.join(METADATA_PATH, `.${fileHash}.json`));
     } catch(err) {
-        console.log(`${filePath} doesn't have tags`);
+        console.log(`${fileHash} doesn't have tags`);
     }
     return stats;
 }
