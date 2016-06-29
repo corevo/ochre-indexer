@@ -32,6 +32,6 @@
     "info.js": "^0.1.0",
     "md5": "^2.0.0",
     "mkdirp": "^0.5.1",
-    "ochre-preview": "0.0.0"
+    "ochre-preview": "^0.0.2"
   }
 }
