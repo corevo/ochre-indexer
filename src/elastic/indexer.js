@@ -47,7 +47,7 @@ export default class Indexer {
                     if (err) {
                         console.error(err);
                     } else {
-                        document.body.contents = contents;
+                        document.body = Object.assign(document.body, contents);
                     }
                     let stats = getStats(fileHash);
                     if (stats) {
